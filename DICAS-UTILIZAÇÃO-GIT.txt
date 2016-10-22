@@ -1,0 +1,97 @@
+﻿Como Usar o Git:
+
+- Instalar o git no computador
+- Executar o programa git bash
+- digitar:
+	git config --global user.name "Carlos Eduardo Silva"
+
+	git config --global user.email "carlos.eduardo-silva@hotmail.com"
+- Criar uma pasta com o nome "local"
+- ir até a pasta do projeto
+- cd [nomedapasta]
+- git init - cria um repositório na pasta do projeto
+- git status - saber status do projeto
+- git add [nomedoarquivo]
+- Mas pode usar:
+	git add *.txt - adiciona todos os arquivos txt
+	git add . - adiciona todos os arquivos que estiver no diretório
+- criar um arquivo chamado ".gitignore" e coloque em cada linha o nome do arquivo que o git deve ignorar
+- Exemplo:
+carlinhos.txt
+temp/ -> pasta com barra no final
+- git commit -m "mensagem relevante a alteração" -> adiciona de fato as alterações do arquivo no controlador de versão
+- git commit -a -m "mensagem relevante a alteração" -mas com o -a pula a etapa de unstage
+- git diff - serve para visualizar quais foram as alterações feita no arquivo
+- git diff staged -> apresenta as alterações no arquivo que esteja na stagin area
+- git log -> serve para visualizar todos commits feitos desde o início até a data atual com dados de autor, email, data/hora e chave
+- git log -p -> visualiza o log e diff dos commits feitos do mais recente até o mais antigo
+- Dependendo do tamanho do log tem que ir apertando o enter para apresentar o restante do conteúdo e no final apertar 'q' para sair e voltar 
+- git log -p -1 -> para visualizar o ultimo commit(pode alterar o numero para quantos relatorios deseja visualizar)
+- gitk -> interface grafica para visualizar relatórios de commits
+- git log --pretty=oneline -> gera relatorio simples de uma linha de cada commit com a chave e a descrição do commit
+- Para adicionar arquivos/alterações de arquivos a um commit já criado é só fazer o seguinte:
+- git add . > adiciona todos os novos arquivos alterados/incluidos
+- git commit --amend -m "Descrição do commit" -> Altera o ultimo commit feito e não adiciona outro commit
+- E depois git log --pretty=oneline -> para visualizar que o commit foi alterado e não incluido outro commit
+- Remover da unstage area:
+- git reset HEAD nomedoarquivocomextensao ou <TAB> depois que escrever o começo do nome do arquivo que ele completa
+- Se fizer uma alteração no arquivo e esqueceu o que alterou, ou a alteração não foi devida por algum motivo, fazer da seguinte forma, reverte um arquivo alterado:
+- git checkout -- <nome do arquivo com a extensão> - E será revertida as alterações naquele arquivo em específico de acordo com o commit anterior
+- Tags? - versões do projeto
+- git tag -> lista as tags do projeto
+- Versões do sistema, onde é possível reverter uma versão específica do sistema
+- Como:
+- git tag -a v1.0 -m "Versão 1.0" - O '-a' é uma tag anotada, com informações de quem criou a tag, autor e email e data
+- git log --pretty=oneline -> lista os commits em uma linha com uma chave cada uma
+- git tag -a v0.0 <copia e cola a chave completa do commit> -m "Versão 0.0"
+- git tag
+- git show v0.0 -> detalhes de cada tag
+- Para voltar a uma versão do projeto:
+- git checkout v0.0 -> aponta para aquele commit, para aquela versão do projeto
+- Para voltar a para a versão mais atual(master):
+- git checkout master
+- Para remover uma tag criada:
+- git tag
+- git tag -d <nome da tag>
+- Branch(Ramificações do sistema)
+
+- Criar um ambiente de teste:
+- git branch <nome do branch>
+- git checkout <nome do branch>
+- Se quiser evitar os dois comandos anteriores, é só usar:
+- git checkout -b <nome do branch>
+- Add as alterações no branch(ambiente de teste) criado
+- git commit -a -m "nova funcionalidade adicionada e testada"
+- Para voltar para o master:
+- git checkout master
+- Merge{Tradução: fundir, juntar} ->(trazer as alterações do branch[ambiente de teste] para o master[ambiente de produção])
+- Primeiro vc tem que estar no master
+- Depois: git merge <nome do branch>
+- Para excluir o branch:
+- git branch -d teste
+- git branch -> lista todos os branchs do projeto
+=========================GIT Rede Local======================
+- Criar a workspace no servidor local
+- criar a pasta do projeto
+- instalar o git
+- pelo git entrar na pasta do projeto com cd <caminho da pasta do projeto>
+- Ao invés de git init, utilizar:
+- git init --bare -> cria um repositório no modo bare
+- git clone file:////endereço de rede da pasta do projeto <se quiser alterar com o nome da pasta que está no servidor>
+- Ex.: git clone file:////NOTEBOOK/Users/Public/Documents/Projetos/cliente1 prjrede1
+- Para enviar os arquivos que vc alterou para o servidor:
+- git remote -> para trazer o nome do servidor
+- git push origin master -> envia os arquivos para o servidor origin que estão no branch master
+- git pull origin master -> pegar(atualizar) os arquivos do servidor origin que e coloca no branch master, mas ele já faz um merge, mas você pode não querer esse merge automático,
+- Por isso utiliza-se o seguinte, cria um branch separado e depois:
+- git fetch origin branch <nome do branch que vc criou>
+=========================GIT HUB======================
+
+- Gerar um par de chaves para utilizar no github
+- ssh-keygen
+- Acessar o endereço de onde foi gerado os arquivos e abrir o arquivo para copiar a chave e colar no github em SSH dentro de configurações
+- clonar um repositório:
+- git clone <cola o endereço http ou o ssh> -> que tem em cada repositório
+- usar os comandos para enviar ou receber os arquivos:
+- git push origin master
+- git pull origin master
